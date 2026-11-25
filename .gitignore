@@ -5,3 +5,5 @@ lib.spice
 tb.spice
 xschemrc
 *.vcd
+spice/tb_adder4.spice
+verilog/adder
