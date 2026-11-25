@@ -1,0 +1,15 @@
+Magic layout + DRC + extraction (run inside this folder):
+
+  magic -rcfile $PDK_ROOT/sky130A/libs.tech/magic/sky130A.magicrc
+
+In the Magic console (the terminal), for ONE transistor to start with:
+  load full_adder_1bit
+  tech load sky130A      (only if the technology is not already sky130A)
+  getcell ...            (or draw with the Devices menu: nfet 01v8 / pfet 01v8)
+After placing and routing all 28 transistors with metal1/li1:
+  drc check
+  drc why                (shows what each error means; fix until 0 errors)
+  extract all
+  ext2spice lvs
+  ext2spice
+This creates full_adder_1bit.spice, which lvs.sh compares with the schematic.

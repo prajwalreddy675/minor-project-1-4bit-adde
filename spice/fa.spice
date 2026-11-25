@@ -1,5 +1,7 @@
+* 1-bit mirror full adder, 28 transistors, Sky130 (W/L in um)
+* ports: A B Cin Sum Cout VDD GND
 .subckt fa A B Cin Sum Cout VDD GND
-* carry stage
+* carry stage  (Cb = inverted carry)
 XM1  Cb A   n1  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM2  n1 B   GND GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM3  Cb Cin n2  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
@@ -10,7 +12,7 @@ XM7  Cb B   p1  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM8  p2 Cin VDD VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM9  Cb A   p2  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM10 Cb B   p2  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
-* sum stage (NMOS)
+* sum stage, pull-down (Sb = inverted sum)
 XM11 Sb A   s1  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM12 s1 B   s2  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM13 s2 Cin GND GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
@@ -18,7 +20,7 @@ XM14 Sb A   s3  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM15 Sb B   s3  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM16 Sb Cin s3  GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM17 s3 Cb  GND GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
-* sum stage (PMOS)
+* sum stage, pull-up
 XM18 q1 A   VDD VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM19 q2 B   q1  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM20 Sb Cin q2  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
@@ -26,9 +28,9 @@ XM24 q3 Cb  VDD VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM21 Sb A   q3  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM22 Sb B   q3  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM23 Sb Cin q3  VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
-* inverters
+* output inverters
 XM25 Cout Cb GND GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM26 Cout Cb VDD VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
 XM27 Sum  Sb GND GND sky130_fd_pr__nfet_01v8 W=1 L=0.15
 XM28 Sum  Sb VDD VDD sky130_fd_pr__pfet_01v8 W=2 L=0.15
-.ends
+.ends fa

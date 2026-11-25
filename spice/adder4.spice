@@ -1,0 +1,8 @@
+* 4-bit ripple-carry adder made of four 'fa' cells
+.include fa.spice
+.subckt adder4 A0 A1 A2 A3 B0 B1 B2 B3 Cin S0 S1 S2 S3 Cout VDD GND
+X0 A0 B0 Cin S0 c1   VDD GND fa
+X1 A1 B1 c1  S1 c2   VDD GND fa
+X2 A2 B2 c2  S2 c3   VDD GND fa
+X3 A3 B3 c3  S3 Cout VDD GND fa
+.ends adder4
