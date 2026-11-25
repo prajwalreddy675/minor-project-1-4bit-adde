@@ -1,0 +1,10 @@
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+VDD VDD 0 1.8
+R1 VDD 0 1k
+.op
+.control
+run
+print v(VDD)
+quit
+.endc
+.end
