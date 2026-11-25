@@ -1,0 +1,7 @@
+out.txt
+result.txt
+sim.log
+lib.spice
+tb.spice
+xschemrc
+*.vcd
